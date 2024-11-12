@@ -26,38 +26,29 @@
       </div>
     </header>
     <main>
-      <div id="game-container" class="game-container game-container-simple">
-        <div class="game-item paper paper-simple" data-item="paper">
-          <img class="game-icon" src="../assets/images/icon-paper.svg" alt="" />
+      <div id="game-container" class="game-container">
+        <div class="game-item paper-position paper" data-item="paper">
+          <img class="game-icon" src="../assets/images/icon-paper.svg" alt="paper icon" />
         </div>
-        <div class="game-item scissors scissors-simple" data-item="scissors">
-          <img class="game-icon" src="../assets/images/icon-scissors.svg" alt="" />
+        <div class="game-item scissors-position scissors" data-item="scissors">
+          <img class="game-icon" src="../assets/images/icon-scissors.svg" alt="scissors icon" />
         </div>
-        <div class="game-item rock rock-simple" data-item="rock">
-          <img class="game-icon" src="../assets/images/icon-rock.svg" alt="" />
+        <div class="game-item rock-position rock" data-item="rock">
+          <img class="game-icon" src="../assets/images/icon-rock.svg" alt="rock icon" />
         </div>
       </div>
+
       <div id="game-results" class="game-results hide">
-        <div class="results-images">
-          <div id="result-user-container" class="game-item game-item-result">
-            <img id="result-user" src="../assets/images/icon-lizard.svg" alt="" />
-          </div>
-          <div class="results-container">
-            <p id="result-text" class="result-text">YOU WIN</p>
-            <button id="play-again" class="play-again">PLAY AGAIN</button>
-          </div>
-          <div id="result-pc-container" class="game-item game-item-result">
-            <img id="result-pc" src="" alt="" />
-          </div>
+        <div id="user-result-container" class="game-item game-item-result">
+          <img id="user-result" src="" alt="" />
+        </div>
+        <h2 id="result-text">YOU WIN</h2>
+        <button id="play-again" class="play-again">PLAY AGAIN</button>
+        <div id="pc-result-container" class="game-item game-item-result">
+          <img id="pc-result" src="" alt="" />
         </div>
       </div>
-      <button id="rules" class="rules">RULES</button>
     </main>
-    <div id="modal" class="modal">
-      <h2>RULES</h2>
-      <img src="../assets/images/image-rules.svg" alt="" />
-      <span id="close-modal" class="close-modal">X</span>
-    </div>
     <script src="../js/scripts.js"></script>
   </body>
 </html>

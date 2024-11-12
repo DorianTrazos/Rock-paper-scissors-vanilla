@@ -1,20 +1,42 @@
+/* 
+  Localizar los elementos del DOM
+  Detectar donde hace click el jugador
+  Guardar esa jugada
+  Generar la jugada aleatoria del PC
+  Guardar la jugada
+    Cambiar las imágenes del resultado para que coincidan con las jugadas
+    Añadir las clases a los iconos para que mantengan el mismo color
+
+  Comparar las jugadas
+  Establecer ganador
+  Cambiar marcadores
+
+  Cambiar textos victoria
+
+
+  // si la función asigna -> set....
+  // si la función obtiene -> get....
+  // si la función cambia algo -> change....
+  // si la función genera algo -> generate....
+  // si la función chequea algo -> check....
+  // si la función actualiza algo -> update....
+*/
+
 const gameContainerElement = document.getElementById('game-container');
-
 const gameResultsElement = document.getElementById('game-results');
-const playAgainElement = document.getElementById('play-again');
-
-const resultUserContainerElement = document.getElementById('result-user-container');
-const resultPcContainerElement = document.getElementById('result-pc-container');
-const resultUserElement = document.getElementById('result-user');
-const resultPcElement = document.getElementById('result-pc');
-
+const userResultContainerElement = document.getElementById('user-result-container');
+const pcResultContainerElement = document.getElementById('pc-result-container');
+const userResultElement = document.getElementById('user-result');
+const pcResultElement = document.getElementById('pc-result');
 const userScoreElement = document.getElementById('user-score');
 const pcScoreElement = document.getElementById('pc-score');
-const resultTextElement = document.getElementById('result-text');
+const playAgainElement = document.getElementById('play-again');
+const textResultElement = document.getElementById('result-text');
 
-const rulesElement = document.getElementById('rules');
-const modalElement = document.getElementById('modal');
-const closeModalElement = document.getElementById('close-modal');
+let userChoice;
+let pcChoice;
+let userScore = 0;
+let pcScore = 0;
 
 const gameOptions = ['paper', 'rock', 'scissors'];
 
@@ -51,96 +73,66 @@ const gameRules = {
   }
 };
 
-const iconImages = {
-  rock: '../assets/images/icon-rock.svg',
-  paper: '../assets/images/icon-paper.svg',
-  scissors: '../assets/images/icon-scissors.svg',
-  lizard: '../assets/images/icon-lizard.svg',
-  spock: '../assets/images/icon-spock.svg'
-};
-
-let userPlay;
-let pcPlay;
-let userScore = 0;
-let pcScore = 0;
-
 if (document.body.dataset.mode === 'advanced') {
   gameOptions.push('lizard', 'spock');
 }
 
-console.log(window.location);
+const showResults = () => {
+  gameContainerElement.classList.add('hide');
+  gameResultsElement.classList.remove('hide');
+};
+
+const showGame = () => {
+  gameResultsElement.classList.add('hide');
+  gameContainerElement.classList.remove('hide');
+};
 
 const updateScore = () => {
   userScoreElement.textContent = userScore;
   pcScoreElement.textContent = pcScore;
+  showResults();
 };
 
 const checkWinner = () => {
-  if (userPlay === pcPlay) {
-    resultTextElement.textContent = 'TIE';
-    return;
-  }
-
-  if (gameRules[userPlay][pcPlay]) {
-    resultTextElement.textContent = 'YOU WIN';
+  if (userChoice === pcChoice) {
+    textResultElement.textContent = 'TIE';
+  } else if (gameRules[userChoice][pcChoice]) {
+    textResultElement.textContent = 'YOU WIN';
     userScore++;
   } else {
-    resultTextElement.textContent = 'YOU LOSE';
+    textResultElement.textContent = 'YOU LOSE';
     pcScore++;
   }
 
   updateScore();
 };
 
-const showResults = () => {
-  gameContainerElement.classList.add('hide');
-  gameResultsElement.classList.remove('hide');
+const changeIconResult = () => {
+  userResultContainerElement.classList.remove(...gameOptions);
+  userResultContainerElement.classList.add(userChoice);
+  userResultElement.src = `../assets/images/icon-${userChoice}.svg`;
+
+  pcResultContainerElement.classList.remove(...gameOptions);
+  pcResultContainerElement.classList.add(pcChoice);
+  pcResultElement.src = `../assets/images/icon-${pcChoice}.svg`;
+
   checkWinner();
 };
 
-const hideResults = () => {
-  gameResultsElement.classList.add('hide');
-  gameContainerElement.classList.remove('hide');
+const setPcChoice = () => {
+  const randomNumber = Math.floor(Math.random() * gameOptions.length);
+  pcChoice = gameOptions[randomNumber];
+  changeIconResult();
 };
 
-const setResultsImages = () => {
-  resultUserElement.src = iconImages[userPlay];
-  resultUserContainerElement.classList.remove('paper', 'scissors', 'rock', 'spock', 'lizard');
-  resultUserContainerElement.classList.add(userPlay);
-
-  resultPcElement.src = iconImages[pcPlay];
-  resultPcContainerElement.classList.remove('paper', 'scissors', 'rock', 'spock', 'lizard');
-  resultPcContainerElement.classList.add(pcPlay);
-
-  showResults();
-};
-
-const generatePcPlay = () => {
-  const randomPlay = Math.floor(Math.random() * gameOptions.length);
-  pcPlay = gameOptions[randomPlay];
-  setResultsImages();
-};
-
-const setUserPlay = event => {
+const setUserChoice = event => {
   if (!event.target.dataset.item) {
     return;
   }
 
-  userPlay = event.target.dataset.item;
-  generatePcPlay();
+  userChoice = event.target.dataset.item;
+  setPcChoice();
 };
 
-const showModal = () => {
-  modalElement.classList.add('modal-show');
-};
-
-const hideModal = () => {
-  modalElement.classList.remove('modal-show');
-};
-
-gameContainerElement.addEventListener('click', setUserPlay);
-
-playAgainElement.addEventListener('click', hideResults);
-
-rulesElement.addEventListener('click', showModal);
-closeModalElement.addEventListener('click', hideModal);
+gameContainerElement.addEventListener('click', setUserChoice);
+playAgainElement.addEventListener('click', showGame);

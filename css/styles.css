@@ -1,7 +1,8 @@
 :root {
   --background-gradient: radial-gradient(circle at center, #1f3756, #141539);
   --header-outline: #606e85;
-  --score-color: #565468;
+  --score--number-color: #565468;
+  --score-title-color: #2a45c2;
   --rock: #db2e4d;
   --rock-shadow: #9d1634;
   --paper: #5671f5;
@@ -59,13 +60,13 @@ body {
 /* SIMPLE */
 
 /* HEADER */
+
 .header {
   display: flex;
   justify-content: space-between;
   width: 311px;
-  margin-inline: auto;
-  margin-bottom: 105px;
   padding: 12px;
+  margin-bottom: 105px;
   border: 4px solid var(--header-outline);
   border-radius: 4px;
 }
@@ -83,59 +84,49 @@ body {
 
 .score-title {
   font-size: 10px;
-  color: var(--paper-shadow);
+  color: var(--score-title-color);
 }
 
 .score-number {
   font-size: 40px;
-  font-weight: bold;
-  color: var(--score-color);
+  font-weight: 600;
+  color: var(--score--number-color);
 }
 
 .logo {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   text-align: center;
+  justify-content: center;
+  color: #fff;
 }
 
 .logo-item {
   font-size: 21px;
-  color: #fff;
-  font-weight: bold;
+  font-weight: 600;
   line-height: 16px;
 }
 
-/* ICONOS */
+/* ICONS */
 .game-container {
   position: relative;
   width: 312px;
   height: 282px;
-  margin-bottom: 50px;
-  background-image: url(../assets/images/bg-pentagon.svg);
+  background-image: url(../assets/images/bg-triangle.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: 188px 166px;
 }
 
-.game-container-simple {
-  background-image: url(../assets/images/bg-triangle.svg);
-}
-
 .game-item {
   position: absolute;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   width: 130px;
-  height: 133px;
-  background-color: #fff;
+  height: 130px;
   border-radius: 50%;
-}
-
-.game-item-advanced {
-  width: 96px;
-  height: 97px;
+  background-color: #fff;
 }
 
 .game-item-result {
@@ -146,132 +137,33 @@ body {
   pointer-events: none;
 }
 
-.game-icon-advanced {
-  width: 35px;
-}
-
 .paper {
   border: 15px solid var(--paper);
-}
-
-.paper-advanced {
-  top: 60px;
-  right: 0;
+  box-shadow: 0 5px var(--paper-shadow), inset 0 4px rgb(151 151 151 / 0.3);
 }
 
 .scissors {
   border: 15px solid var(--scissors);
+  box-shadow: 0 5px var(--scissors-shadow), inset 0 4px rgb(151 151 151 / 0.3);
 }
 
-.scissors-simple {
+.scissors-position {
   right: 0;
-}
-
-.scissors-advanced {
-  left: calc(50% - 48px);
 }
 
 .rock {
   border: 15px solid var(--rock);
+  box-shadow: 0 5px var(--rock-shadow), inset 0 4px rgb(151 151 151 / 0.3);
 }
 
-.rock-simple {
-  left: 91px;
+.rock-position {
+  left: 90px;
   bottom: 0;
 }
 
-.rock-advanced {
-  left: 150px;
-  bottom: 20px;
-}
-
-.lizard {
-  border: 15px solid var(--lizard);
-}
-
-.lizard-advanced {
-  left: 40px;
-  bottom: 20px;
-}
-
-.spock {
-  border: 15px solid var(--spock);
-}
-
-.spock-advanced {
-  top: 60px;
-}
-
-.rules {
-  position: absolute;
-  left: calc(50% - 64px);
-  bottom: 56px;
-  width: 128px;
-  height: 40px;
-  border: 1px solid #fff;
-  border-radius: 4px;
-  margin-inline: auto;
-  color: #fff;
-  background-color: transparent;
-}
-
-/* MODAL */
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 100vw;
-  height: 100vh;
-  padding: 95px;
-  background-color: #fff;
-  scale: 0;
-  transition: scale 0.3s;
-}
-
-.modal-show {
-  scale: 1;
-}
-
-/* RESULT */
 .game-results {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.results-images {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 60px;
-}
-
-.results-container {
-  position: absolute;
-  top: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.result-text {
-  font-size: 56px;
-  margin: 0;
-  color: #fff;
-  text-align: center;
-}
-
-.play-again {
-  width: 220px;
-  height: 48px;
-  border: none;
-  border-radius: 8px;
 }
 
 .hide {
