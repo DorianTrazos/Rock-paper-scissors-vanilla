@@ -64,6 +64,12 @@ let pcPlay;
 let userScore = 0;
 let pcScore = 0;
 
+if (document.body.dataset.mode === 'advanced') {
+  gameOptions.push('lizard', 'spock');
+}
+
+console.log(window.location);
+
 const updateScore = () => {
   userScoreElement.textContent = userScore;
   pcScoreElement.textContent = pcScore;
@@ -99,11 +105,11 @@ const hideResults = () => {
 
 const setResultsImages = () => {
   resultUserElement.src = iconImages[userPlay];
-  resultUserContainerElement.classList.remove('paper', 'scissors', 'rock');
+  resultUserContainerElement.classList.remove('paper', 'scissors', 'rock', 'spock', 'lizard');
   resultUserContainerElement.classList.add(userPlay);
 
   resultPcElement.src = iconImages[pcPlay];
-  resultPcContainerElement.classList.remove('paper', 'scissors', 'rock');
+  resultPcContainerElement.classList.remove('paper', 'scissors', 'rock', 'spock', 'lizard');
   resultPcContainerElement.classList.add(pcPlay);
 
   showResults();

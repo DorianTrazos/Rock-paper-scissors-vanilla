@@ -3,7 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <title>Advanced game</title>
   </head>
-  <body></body>
+  <body data-mode="advanced">
+    <header class="header">
+      <div class="score-container">
+        <span class="score-title">YOU</span>
+        <span id="user-score" class="score-number">0</span>
+      </div>
+      <div class="logo">
+        <span class="logo-item">ROCK</span>
+        <span class="logo-item">PAPER</span>
+        <span class="logo-item">SCISSORS</span>
+        <span class="logo-item">LIZARD</span>
+        <span class="logo-item">SPOCK</span>
+      </div>
+      <div class="score-container">
+        <span class="score-title">PC</span>
+        <span id="pc-score" class="score-number">0</span>
+      </div>
+    </header>
+    <main>
+      <div id="game-container" class="game-container">
+        <div class="game-item game-item-advanced paper paper-advanced" data-item="paper">
+          <img class="game-icon game-icon-advanced" src="../assets/images/icon-paper.svg" alt="" />
+        </div>
+        <div class="game-item game-item-advanced scissors scissors-advanced" data-item="scissors">
+          <img class="game-icon game-icon-advanced" src="../assets/images/icon-scissors.svg" alt="" />
+        </div>
+        <div class="game-item game-item-advanced rock rock-advanced" data-item="rock">
+          <img class="game-icon game-icon-advanced" src="../assets/images/icon-rock.svg" alt="" />
+        </div>
+        <div class="game-item game-item-advanced lizard lizard-advanced" data-item="lizard">
+          <img class="game-icon game-icon-advanced" src="../assets/images/icon-lizard.svg" alt="" />
+        </div>
+        <div class="game-item game-item-advanced spock spock-advanced" data-item="spock">
+          <img class="game-icon game-icon-advanced" src="../assets/images/icon-spock.svg" alt="" />
+        </div>
+      </div>
+      <div id="game-results" class="game-results hide">
+        <div class="results-images">
+          <div id="result-user-container" class="game-item game-item-result">
+            <img id="result-user" src="" alt="" />
+          </div>
+          <div class="results-container">
+            <p id="result-text" class="result-text">YOU WIN</p>
+            <button id="play-again" class="play-again">PLAY AGAIN</button>
+          </div>
+          <div id="result-pc-container" class="game-item game-item-result">
+            <img id="result-pc" src="" alt="" />
+          </div>
+        </div>
+      </div>
+      <button id="rules" class="rules">RULES</button>
+    </main>
+    <div id="modal" class="modal">
+      <h2>RULES</h2>
+      <img src="../assets/images/image-rules-bonus.svg" alt="" />
+      <span id="close-modal" class="close-modal">X</span>
+    </div>
+    <script src="../js/scripts.js"></script>
+  </body>
 </html>
